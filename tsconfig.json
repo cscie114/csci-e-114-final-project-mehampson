@@ -106,6 +106,7 @@
     "./gatsby-node.ts",
     "./gatsby-config.ts",
     "./plugins/**/*",
-    "environment.d.ts"
+    "environment.d.ts",
+    "gatsby-types.d.ts"
   ]
 }
