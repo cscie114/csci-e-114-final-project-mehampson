@@ -2,7 +2,6 @@ export interface UnauthorizedResponse {
     detail: string
 }
 
-
 export interface SuccessResponse {
     page: number,
     per_page: number,
