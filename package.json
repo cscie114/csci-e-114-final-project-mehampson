@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
-    "gatsby": "^5.9.0",
+    "gatsby": "^5.3.3",
     "gatsby-plugin-image": "^3.9.0",
     "gatsby-plugin-manifest": "^5.9.0",
     "gatsby-plugin-mdx": "^5.9.0",
@@ -43,6 +43,7 @@
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
+    "react-bulma-components": "^4.1.0",
     "typescript": "^5.0.4"
   }
 }
