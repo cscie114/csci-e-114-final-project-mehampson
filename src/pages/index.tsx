@@ -1,6 +1,7 @@
 import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { graphql } from "gatsby"
+import RecipeCard from "../components/recipe-card";
 
 export const Head: HeadFC = () => <title>Meal Board</title>
 
@@ -13,7 +14,7 @@ const RecipeIndex = ({ data }: PageProps<Queries.RecipeIndexQuery>) => {
       <p>Site title: TESTING</p>
       <section>
         {data.allRecipe.nodes?.map((recipe) => (
-          <div key={recipe.id}>{recipe.name}</div>
+          <RecipeCard recipe={recipe} />
         ))}
       </section>
 

@@ -48,7 +48,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async ({
             ...recipe,
             parent: null,
             children: [],
-            id: createNodeId(`person__${recipe.id}`),
+            id: createNodeId(`recipe__${recipe.id}`),
             internal: {
                 type: "Recipe",
                 content: JSON.stringify(recipe),
@@ -59,3 +59,11 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async ({
         createNode(node);
     });
 };
+
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({ actions }) => {
+    actions.createTypes(`
+      type Recipe implements Node {
+        name: String!
+      }
+`)
+}
