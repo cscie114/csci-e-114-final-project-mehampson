@@ -18,6 +18,7 @@ async function fetch_recipes() {
     console.log(headers);
 
     const response = await fetch(mealie, { "headers": headers });
+    console.log(await response.text());
     const data: MealieResponse = await response.json();
 
     /* A happy response from Mealie will have an array of recipes in the 'item' property. */
@@ -81,8 +82,9 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = async ({ node,
 
     if (node.internal.type === "Recipe" && node.image !== "") {
 
-        const fileNode = await createRemoteFileNode({
+        console.log(node.name);
 
+        const fileNode = await createRemoteFileNode({
             url: `${process.env.GATSBY_MEALIE_URL}/api/media/recipes/${node.recipeId}/images/original.webp`,
             parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
             createNode, // helper function in gatsby-node to generate the node

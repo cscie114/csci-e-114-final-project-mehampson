@@ -1,6 +1,8 @@
 import type { GatsbyConfig } from "gatsby";
 import * as dotenv from 'dotenv';
 
+require("dotenv").config();
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Meal Board`,
