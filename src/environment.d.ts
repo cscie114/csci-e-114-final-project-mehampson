@@ -2,12 +2,12 @@ declare global {
     /* Thanks, https://stackoverflow.com/questions/45194598/using-process-env-in-typescript */
     namespace NodeJS {
         interface ProcessEnv {
+            /* Prefixing the env with GATSBY_ magically makes it available for our client-side code.
+             * We want that for the URL, to hot-load images from Mealie, but don't need the API key to be public. */
             MEALIE_API_KEY: string;
-            MEALIE_URL: string;
+            GATSBY_MEALIE_URL: string;
         }
     }
 }
 
-// If this file has no import/export statements (i.e. is a script)
-// convert it into a module by adding an empty export statement.
 export { }

@@ -1,12 +1,10 @@
-import * as dotenv from "dotenv";
 import type { GatsbyNode } from "gatsby";
 import type { Recipe, UnauthorizedResponse, SuccessResponse, MealieResponse } from "./src/mealie.d";
 import fetch, { Headers } from 'node-fetch';
 
-dotenv.config();
-
 async function fetch_recipes() {
-    const mealie = new URL(process.env.MEALIE_URL);
+    console.log('env: ' + process.env.GATSBY_MEALIE_URL)
+    const mealie = new URL(process.env.GATSBY_MEALIE_URL);
     mealie.pathname = "api/recipes";
     mealie.searchParams.append("page", "1");
     mealie.searchParams.append("perPage", "-1");
@@ -46,9 +44,11 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async ({
     data.forEach((recipe: Recipe) => {
         const node = {
             ...recipe,
+            /* We need to use Mealie's internal IDs, but the attribute will be overwritten in a moment unless we stash it here.*/
+            recipeId: recipe.id,
             parent: null,
             children: [],
-            id: createNodeId(`recipe__${recipe.id}`),
+            id: createNodeId(`recipe_${recipe.id}`),
             internal: {
                 type: "Recipe",
                 content: JSON.stringify(recipe),
@@ -63,7 +63,11 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async ({
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({ actions }) => {
     actions.createTypes(`
       type Recipe implements Node {
+        recipeId: String!
         name: String!
+        description: String!
+        image: String!
+
       }
 `)
 }

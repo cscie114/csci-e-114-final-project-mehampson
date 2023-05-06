@@ -18,18 +18,19 @@ export type MealieResponse =
 
 
 export interface Recipe {
-    id: string,
+    id: string!,
+    recipeId: string!
     userId?: string,
     groupId?: string,
     name: string!,
     slug?: string,
-    image?: string,
+    image: string!,
     recipeYield?: string,
     totalTime?: string,
     prepTime?: string,
     cookTime?: string,
     performTime?: string,
-    description?: string,
+    description: string!,
     recipeCategory?: string[],
     tags?: string[],
     tools?: string[],
