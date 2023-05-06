@@ -35,6 +35,10 @@ export interface RecipeInstructions {
     ingredientReferences: String[]
 }
 
+export type RecipeList =
+    | RecipeIngredient
+    | RecipeInstructions
+
 
 export interface Recipe {
     id: string!,

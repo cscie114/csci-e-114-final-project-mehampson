@@ -1,6 +1,6 @@
 import type { GatsbyNode } from "gatsby";
 import { createRemoteFileNode } from "gatsby-source-filesystem";
-import type { Recipe, UnauthorizedResponse, SuccessResponse, MealieResponse, RecipeInstructions } from "./src/mealie.d";
+import type { Recipe, UnauthorizedResponse, SuccessResponse, MealieResponse, RecipeInstructions, RecipeIngredient } from "./src/mealie.d";
 import fetch, { Headers } from 'node-fetch';
 
 async function fetch_recipes() {
@@ -88,7 +88,26 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         image: String!
         slug: String!
         recipeImg: File @link(from: "fields.localFile")
+        recipeIngredient: [RecipeIngredient]
       }
+
+      type RecipeIngredient {
+        title: String,
+        note: String!,
+        unit: String,
+        food: String,
+        disableAmount: Boolean,
+        quantity: Float,
+        originalText: String,
+        referenceId: String!
+      }
+
+      export interface RecipeInstructions {
+        id: string!,
+        title: string,
+        text: string!
+        ingredientReferences: String[]
+    }
 `)
 }
 
