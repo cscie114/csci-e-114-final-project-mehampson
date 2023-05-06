@@ -1,6 +1,6 @@
 import type { GatsbyNode } from "gatsby";
 import { createRemoteFileNode } from "gatsby-source-filesystem";
-import type { Recipe, UnauthorizedResponse, SuccessResponse, MealieResponse } from "./src/mealie.d";
+import type { Recipe, UnauthorizedResponse, SuccessResponse, MealieResponse, RecipeInstructions } from "./src/mealie.d";
 import fetch, { Headers } from 'node-fetch';
 
 async function fetch_recipes() {
@@ -38,11 +38,29 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async ({
     createNodeId,
     createContentDigest,
 }) => {
-    const { createNode } = actions;
+    const { createNode, createNodeField } = actions;
 
     const data = await fetch_recipes();
 
-    data.forEach((recipe: Recipe) => {
+    data.forEach(async (recipe: Recipe) => {
+
+        /* For whatever reason, the 'all recipes' endpoint doesn't include the recipe instructions.
+         * Those will be useful to have, so we need to fetch them manually. */
+
+        const mealie = new URL(process.env.GATSBY_MEALIE_URL);
+        mealie.pathname = `api/recipes/${recipe.slug}`;
+
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.MEALIE_API_KEY}`
+        });
+
+        const response = await fetch(mealie, { "headers": headers });
+        if (response.ok) {
+            const instructions = await response.json();
+            recipe.recipeInstructions = instructions.recipeInstructions;
+        }
+
         const node = {
             ...recipe,
             /* We need to use Mealie's internal IDs, but the attribute will be overwritten in a moment unless we stash it here.*/
@@ -81,7 +99,7 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = async ({ node,
 
     if (node.internal.type === "Recipe" && node.image !== "") {
 
-        console.log(node.name);
+        console.log(`Extending ${node.name}`);
 
         const fileNode = await createRemoteFileNode({
             url: `${process.env.GATSBY_MEALIE_URL}/api/media/recipes/${node.recipeId}/images/original.webp`,

@@ -28,6 +28,13 @@ export interface RecipeIngredient {
     referenceId: String!
 }
 
+export interface RecipeInstructions {
+    id: string!,
+    title: string,
+    text: string!
+    ingredientReferences: String[]
+}
+
 
 export interface Recipe {
     id: string!,
@@ -55,4 +62,5 @@ export interface Recipe {
     updateAt?: string,
     lastMade?: string
     recipeIngredient?: RecipeIngredient[]
+    recipeInstructions?: RecipeInstructions[]
 }
