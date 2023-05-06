@@ -20,6 +20,7 @@ export type MealieResponse =
 export interface Recipe {
     id: string!,
     recipeId: string!
+    recipeImg: any // temp hack, where is this typedef?
     userId?: string,
     groupId?: string,
     name: string!,

@@ -34,6 +34,11 @@ query RecipeIndex {
       description
       image
       recipeId
+      recipeImg {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED)
+        }
+      }
     }
   }
 }`

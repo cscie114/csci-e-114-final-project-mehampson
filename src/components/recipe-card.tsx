@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import { Recipe } from '../mealie.d';
 import 'bulma/css/bulma.min.css';
 import { Card, Media, Image, Heading, Content } from 'react-bulma-components';
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 //http://192.168.1.19:9926/api/media/recipes/{id}/images/original.webp?rnd=1&version={image}
 
@@ -11,15 +12,10 @@ interface RecipeCardProps {
 }
 
 
-const RecipeCard = ({ recipe }: RecipeCardProps) => (
-    <Card style={{ width: '20rem', margin: 'auto' }}>
-        {recipe.image ?
-            (<Card.Image
-                size="4by3"
-                src={`${process.env.GATSBY_MEALIE_URL}/api/media/recipes/${recipe.recipeId}/images/original.webp`}
-            />)
-            : (<span />)
-        }
+const RecipeCard = ({ recipe }: RecipeCardProps) => {
+    const image = getImage(recipe.recipeImg);
+    return (<Card style={{ width: '20rem', margin: 'auto' }}>
+        {recipe.recipeImg && (<GatsbyImage image={recipe.recipeImg.childImageSharp.gatsbyImageData} alt={recipe.name} />)}
         <Card.Content>
             <Media>
                 <Media.Item>
@@ -28,7 +24,8 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => (
             </Media>
         </Card.Content>
     </Card >
-);
+    )
+};
 
 export default RecipeCard;
 
