@@ -24,7 +24,7 @@ export interface Recipe {
     userId?: string,
     groupId?: string,
     name: string!,
-    slug?: string,
+    slug: string!,
     image: string!,
     recipeYield?: string,
     totalTime?: string,

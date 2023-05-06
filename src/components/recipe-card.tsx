@@ -16,13 +16,15 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
     const image = getImage(recipe.recipeImg);
     return (<Card style={{ width: '20rem', margin: 'auto' }}>
         {recipe.recipeImg && (<GatsbyImage image={recipe.recipeImg.childImageSharp.gatsbyImageData} alt={recipe.name} />)}
-        <Card.Content>
-            <Media>
-                <Media.Item>
-                    <Heading size={4}>{recipe.name}</Heading>
-                </Media.Item>
-            </Media>
-        </Card.Content>
+        <Link to={`recipes/${recipe.slug}`}>
+            <Card.Content>
+                <Media>
+                    <Media.Item>
+                        <Heading size={4}>{recipe.name}</Heading>
+                    </Media.Item>
+                </Media>
+            </Card.Content>
+        </Link>
     </Card >
     )
 };

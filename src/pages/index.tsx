@@ -31,6 +31,7 @@ query RecipeIndex {
     nodes {
       id
       name
+      slug
       description
       image
       recipeId

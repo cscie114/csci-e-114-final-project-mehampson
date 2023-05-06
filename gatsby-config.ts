@@ -1,10 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
 import * as dotenv from 'dotenv';
 
-dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
-
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Meal Board`,
@@ -22,6 +18,7 @@ const config: GatsbyConfig = {
     "gatsby-plugin-sitemap",
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-netlify`,
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

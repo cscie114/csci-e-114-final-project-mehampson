@@ -68,6 +68,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         name: String!
         description: String!
         image: String!
+        slug: String!
         recipeImg: File @link(from: "fields.localFile")
       }
 `)
