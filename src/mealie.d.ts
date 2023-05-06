@@ -17,6 +17,18 @@ export type MealieResponse =
     | UnauthorizedResponse
 
 
+export interface RecipeIngredient {
+    title: String,
+    note: String!,
+    unit: String,
+    food: String,
+    disableAmount: Boolean,
+    quantity: Number,
+    originalText: String,
+    referenceId: String!
+}
+
+
 export interface Recipe {
     id: string!,
     recipeId: string!
@@ -42,4 +54,5 @@ export interface Recipe {
     createdAt?: string,
     updateAt?: string,
     lastMade?: string
+    recipeIngredient?: RecipeIngredient[]
 }

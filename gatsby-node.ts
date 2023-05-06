@@ -18,7 +18,6 @@ async function fetch_recipes() {
     console.log(headers);
 
     const response = await fetch(mealie, { "headers": headers });
-    console.log(await response.text());
     const data: MealieResponse = await response.json();
 
     /* A happy response from Mealie will have an array of recipes in the 'item' property. */
