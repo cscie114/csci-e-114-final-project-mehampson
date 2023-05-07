@@ -36,6 +36,12 @@ export interface RecipeInstructions {
     ingredientReferences: string[]
 }
 
+export interface RecipeTaxonomy {
+    id: string,
+    name: string,
+    slug: string
+}
+
 export interface Recipe {
     id: string!,
     recipeId: string!
@@ -51,8 +57,12 @@ export interface Recipe {
     cookTime?: string,
     performTime?: string,
     description: string!,
-    recipeCategory?: string[],
-    tags?: string[],
+    /* I'm struggling a bit trying to tell TypeScript this will always exists as an
+     * array of 0 or more RecipeTaxomony objects, and having that actually be accepted
+     * by the props. So solely in the interest in not being stuck on this typing issue,
+     * we're using any. */
+    recipeCategory?: readonly RecipeTaxonomy[] | any,
+    tags?: readonly RecipeTaxonomy[],
     tools?: string[],
     rating?: number,
     orgURL?: string,
@@ -61,6 +71,6 @@ export interface Recipe {
     createdAt?: string,
     updateAt?: string,
     lastMade?: string
-    recipeIngredient: readonly RecipeIngredient[]
+    recipeIngredient?: readonly RecipeIngredient[]
     recipeInstructions?: RecipeInstructions[]
 }

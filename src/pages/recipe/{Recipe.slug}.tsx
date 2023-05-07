@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import type { PageProps } from "gatsby";
 import Layout from '../../components/layout';
+
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
