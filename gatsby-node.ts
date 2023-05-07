@@ -1,10 +1,10 @@
 import type { GatsbyNode } from "gatsby";
 import { createRemoteFileNode } from "gatsby-source-filesystem";
-import type { Recipe, UnauthorizedResponse, SuccessResponse, MealieResponse, RecipeInstructions, RecipeIngredient } from "./src/mealie.d";
+import type { Recipe, MealieResponse, } from "./src/mealie.d";
 import fetch, { Headers } from 'node-fetch';
 
 async function fetch_recipes() {
-    console.log('env: ' + process.env.GATSBY_MEALIE_URL)
+    console.log('env: ' + process.env.GATSBY_MEALIE_URL);
     const mealie = new URL(process.env.GATSBY_MEALIE_URL);
     mealie.pathname = "api/recipes";
     mealie.searchParams.append("page", "1");
@@ -38,7 +38,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async ({
     createNodeId,
     createContentDigest,
 }) => {
-    const { createNode, createNodeField } = actions;
+    const { createNode } = actions;
 
     const data = await fetch_recipes();
 
@@ -110,8 +110,8 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         text: String!
         ingredientReferences: [String]
     }
-`)
-}
+`);
+};
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = async ({ node,
     actions: { createNode, createNodeField },
@@ -132,7 +132,7 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = async ({ node,
 
         // if the file was created, extend the node with "localFile"
         if (fileNode) {
-            createNodeField({ node, name: "localFile", value: fileNode.id })
+            createNodeField({ node, name: "localFile", value: fileNode.id });
         }
     }
 
