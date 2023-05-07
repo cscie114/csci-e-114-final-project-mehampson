@@ -1,5 +1,9 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 /* This took forever until I found https://www.bemyaficionado.com/page-layouts-react-typescript/ */
 interface Props {
@@ -10,14 +14,14 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <div className="">
             <header className="">
-                <h1>Meal Board</h1>
-                <nav>
-                    <ul className="">
-                        <li className="">
-                            <Link to='/'>Home</Link>
-                        </li>
-                    </ul>
-                </nav>
+                <Navbar bg="light">
+                    <Container>
+                        <Nav>
+                            <Navbar.Brand>Meal Board</Navbar.Brand>
+                            <Nav.Link href="/">Recipes</Nav.Link>
+                        </Nav>
+                    </Container>
+                </Navbar>
             </header>
             <main>
                 {props.children}
