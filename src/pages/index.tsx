@@ -1,14 +1,12 @@
-import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
-import { graphql } from "gatsby"
+import * as React from "react";
+import type { HeadFC, PageProps } from "gatsby";
+import { graphql } from "gatsby";
 import RecipeCard from "../components/recipe-card";
 import Layout from "../components/layout";
-import 'bulma/css/bulma.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { recipeList } from "../components/css/recipes.module.css";
 
-export const Head: HeadFC = () => <title>Meal Board</title>
-
-//http://192.168.1.19:9926/api/media/recipes/{id}/images/min-original.webp?rnd=1&version={image}
+export const Head: HeadFC = () => <title>Meal Board</title>;
 
 
 const RecipeIndex = ({ data }: PageProps<Queries.RecipeIndexQuery>) => {
@@ -17,13 +15,13 @@ const RecipeIndex = ({ data }: PageProps<Queries.RecipeIndexQuery>) => {
       <>
         <div className={recipeList}>
           {data.allRecipe.nodes?.map((recipe) => (
-            <RecipeCard recipe={recipe} />
+            <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </div>
       </ >
     </Layout>
-  )
-}
+  );
+};
 
 export default RecipeIndex;
 
@@ -44,4 +42,4 @@ query RecipeIndex {
       }
     }
   }
-}`
+}`;
