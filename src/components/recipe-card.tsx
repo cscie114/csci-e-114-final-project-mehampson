@@ -24,7 +24,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
             </Link>
         </Card >
     );
-}
+};
 
 export default RecipeCard;
 
