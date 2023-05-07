@@ -2,18 +2,18 @@ import React from "react";
 import { graphql } from "gatsby";
 import type { PageProps } from "gatsby";
 import Layout from '../../components/layout';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Tab from 'react-bootstrap/Tab';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const RecipePage = ({ data }: PageProps<Queries.RecipePageQuery>) => {
-    const recipe = data.recipe;
+    const { recipe } = data;
 
-    /* I can't get TypeScript to believe that `recipe` will never be null */
-    if (!recipe) { return (<Layout><></></Layout>); }
+    if (!recipe) { return; }
     else {
         return (
             <Layout>
@@ -67,10 +67,9 @@ const RecipePage = ({ data }: PageProps<Queries.RecipePageQuery>) => {
                         </Col>
                     </Row>
                 </Container>
-            </Layout >
+            </Layout>
         );
     }
-
 };
 
 

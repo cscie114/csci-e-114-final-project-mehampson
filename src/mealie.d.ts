@@ -19,27 +19,22 @@ export type MealieResponse =
 
 
 export interface RecipeIngredient {
-    title: String,
-    note: String!,
-    unit: String,
-    food: String,
-    disableAmount: Boolean,
-    quantity: Number,
-    originalText: String,
-    referenceId: String!
+    title: string,
+    note: string!,
+    unit?: string,
+    food?: string,
+    disableAmount?: boolean,
+    quantity?: number,
+    originalText?: string,
+    referenceId?: string
 }
 
 export interface RecipeInstructions {
     id: string!,
     title: string,
     text: string!
-    ingredientReferences: String[]
+    ingredientReferences: string[]
 }
-
-export type RecipeList =
-    | RecipeIngredient
-    | RecipeInstructions
-
 
 export interface Recipe {
     id: string!,
@@ -66,6 +61,6 @@ export interface Recipe {
     createdAt?: string,
     updateAt?: string,
     lastMade?: string
-    recipeIngredient?: RecipeIngredient[]
+    recipeIngredient: readonly RecipeIngredient[]
     recipeInstructions?: RecipeInstructions[]
 }

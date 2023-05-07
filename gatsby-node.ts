@@ -100,8 +100,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         disableAmount: Boolean,
         quantity: Float,
         originalText: String,
-        referenceId: String!
-        text: String @proxy(from: "note")
+        referenceId: String
       }
 
       type RecipeInstructions {
