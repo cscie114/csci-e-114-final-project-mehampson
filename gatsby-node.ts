@@ -101,6 +101,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         quantity: Float,
         originalText: String,
         referenceId: String!
+        text: String @proxy(from: "note")
       }
 
       type RecipeInstructions {
@@ -127,7 +128,7 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = async ({ node,
             createNode, // helper function in gatsby-node to generate the node
             createNodeId, // helper function in gatsby-node to generate the node id
             getCache,
-        })
+        });
 
         // if the file was created, extend the node with "localFile"
         if (fileNode) {
@@ -135,4 +136,4 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = async ({ node,
         }
     }
 
-}
+};
