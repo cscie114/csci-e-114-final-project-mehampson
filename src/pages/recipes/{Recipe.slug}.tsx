@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import type { HeadFC, PageProps } from "gatsby"
 import 'bulma/css/bulma.min.css';
 import { Container, Section, Heading, Block } from 'react-bulma-components';
+import Layout from '../../components/layout';
 
 
 const RecipePage = ({ data }: PageProps<Queries.RecipePageQuery>) => {
@@ -29,24 +30,26 @@ const RecipePage = ({ data }: PageProps<Queries.RecipePageQuery>) => {
     }
 
     return (
-        <Container>
-            <Section>
-                <Block>
-                    <Heading size={4}>{recipe.name}</Heading>
-                    <p>{recipe.description}</p>
-                </Block>
+        <Layout>
+            <Container>
+                <Section>
+                    <Block>
+                        <Heading size={4}>{recipe.name}</Heading>
+                        <p>{recipe.description}</p>
+                    </Block>
 
-                <Block>
-                    <Heading size={5}>Ingredients</Heading>
-                    <ul> {ingredients} </ul>
-                </Block>
+                    <Block>
+                        <Heading size={5}>Ingredients</Heading>
+                        <ul> {ingredients} </ul>
+                    </Block>
 
-                <Block>
-                    <Heading size={5}>Instructions</Heading>
-                    <ul> {instructions} </ul>
-                </Block>
-            </Section>
-        </Container>
+                    <Block>
+                        <Heading size={5}>Instructions</Heading>
+                        <ul> {instructions} </ul>
+                    </Block>
+                </Section>
+            </Container>
+        </Layout>
     )
 
 }

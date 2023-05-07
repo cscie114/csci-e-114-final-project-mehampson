@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 
+/* This took forever until I found https://www.bemyaficionado.com/page-layouts-react-typescript/ */
+interface Props {
+    children: React.ReactNode
+}
 
-const Layout = (children: React.ReactNode) => {
+const Layout: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <div className="">
             <header className="">
@@ -16,7 +20,7 @@ const Layout = (children: React.ReactNode) => {
                 </nav>
             </header>
             <main>
-                {children}
+                {props.children}
             </main>
             <footer>
             </footer>

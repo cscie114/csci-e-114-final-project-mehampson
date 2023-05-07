@@ -89,6 +89,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         slug: String!
         recipeImg: File @link(from: "fields.localFile")
         recipeIngredient: [RecipeIngredient]
+        recipeInstructions: [RecipeInstructions]
       }
 
       type RecipeIngredient {
@@ -102,11 +103,11 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         referenceId: String!
       }
 
-      export interface RecipeInstructions {
-        id: string!,
-        title: string,
-        text: string!
-        ingredientReferences: String[]
+      type RecipeInstructions {
+        id: String!,
+        title: String,
+        text: String!
+        ingredientReferences: [String]
     }
 `)
 }
