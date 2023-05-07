@@ -2,6 +2,11 @@ import React from "react";
 import { graphql } from "gatsby";
 import type { PageProps } from "gatsby";
 import Layout from '../../components/layout';
+import Container from 'react-bootstrap/Container';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Tab from 'react-bootstrap/Tab';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -12,61 +17,56 @@ const RecipePage = ({ data }: PageProps<Queries.RecipePageQuery>) => {
     else {
         return (
             <Layout>
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className='col'>
+                <Container>
+                    <Row>
+                        <Col>
                             <h4>{recipe.name}</h4>
                             <p>{recipe.description}</p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className='col'>
-                            <ul className="nav nav-tabs" id="recipe-tabs" role="tablist">
-                                <li className="nav-item">
-                                    <button className="nav-link active" id="ing-tab" data-bs-toggle="tab" data-bs-target="#ingredients" type="button" role="tab" aria-controls="home" aria-selected="true">Ingredients</button>
-                                </li>
-                                <li className="nav-item">
-                                    <button className="nav-link active" id="instr-tab" data-bs-toggle="tab" data-bs-target="#instructions" type="button" role="tab" aria-controls="home" aria-selected="true">Instructions</button>
-                                </li>
-                            </ul>
-
-                            <div className="tab-content">
-                                <div className="tab-pane active" id="ingredients" role="tabpanel" aria-labelledby="ing-tab">
-                                    <ul>
-                                        {recipe.recipeIngredient && recipe.recipeIngredient.map((ingredient, index) => {
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Tab.Container id="recipe-tabs" defaultActiveKey="#ingredients">
+                                <ListGroup horizontal>
+                                    <ListGroup.Item action href="#ingredients">Ingredients</ListGroup.Item>
+                                    <ListGroup.Item action href="#instructions">Instructions</ListGroup.Item>
+                                </ListGroup>
+                                <Tab.Content>
+                                    <Tab.Pane eventKey="#ingredients">
+                                        <ListGroup variant="flush"> {recipe.recipeIngredient && recipe.recipeIngredient.map((ingredient, index) => {
                                             if (!ingredient) { return; }
                                             else {
                                                 return (
                                                     <>
                                                         {/* Again, it's complaining that `ingredient` might be null */}
-                                                        {ingredient.title ? <li key={`ing-title-${index}`}><strong>{ingredient.title}</strong></li> : ''}
-                                                        <li key={`ing-${index}`}>{ingredient.note}</li>
+                                                        {ingredient.title ? <ListGroup.Item variant="secondary" key={`ing-title-${index}`}><strong>{ingredient.title}</strong></ListGroup.Item> : ''}
+                                                        <ListGroup.Item key={`ing-${index}`}>{ingredient.note}</ListGroup.Item>
                                                     </>
                                                 );
                                             }
                                         })}
-                                    </ul>
-                                </div>
-
-                                <div className="tab-pane" id="instructions" role="tabpanel" aria-labelledby="instr-tab">
-                                    <ul>
-                                        {recipe.recipeInstructions && recipe.recipeInstructions.map((instruction, index) => {
+                                        </ListGroup>
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="#instructions">
+                                        <ListGroup variant="flush" as="ol" numbered> {recipe.recipeInstructions && recipe.recipeInstructions.map((instruction, index) => {
                                             if (!instruction) { return; }
                                             else {
                                                 return (
                                                     <>
-                                                        {instruction.title ? <li key={`instr-title-${index}`}><strong>{instruction.title}</strong></li> : ''}
-                                                        <li key={`ing-${index}`}>{instruction.text}</li>
+                                                        {instruction.title ? <ListGroup.Item variant="secondary" key={`instr-title-${index}`}><strong>{instruction.title}</strong></ListGroup.Item> : ''}
+                                                        <ListGroup.Item key={`ing-${index}`}>{instruction.text}</ListGroup.Item>
                                                     </>
                                                 );
                                             }
                                         })}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                        </ListGroup>
+                                    </Tab.Pane>
+                                </Tab.Content>
+
+                            </Tab.Container>
+                        </Col>
+                    </Row>
+                </Container>
             </Layout>
         );
     }

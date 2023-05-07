@@ -3,6 +3,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { graphql } from "gatsby";
 import RecipeCard from "../components/recipe-card";
 import Layout from "../components/layout";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { recipeList } from "../components/css/recipes.module.css";
 
 export const Head: HeadFC = () => <title>Meal Board</title>;

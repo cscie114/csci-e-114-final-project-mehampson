@@ -1,5 +1,6 @@
 import * as React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'gatsby';
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,12 +14,14 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
     return (
         <div className="">
             <header className="">
-                <nav className='navbar bg-light'>
-                    <div className='container-fluid'>
-                        <a className='navbar-brand' href='#'>Meal Board</a>
-                        <a className='navbar-link' href='/'>Recipes</a>
-                    </div>
-                </nav>
+                <Navbar bg="light">
+                    <Container>
+                        <Nav>
+                            <Navbar.Brand>Meal Board</Navbar.Brand>
+                            <Nav.Link href="/">Recipes</Nav.Link>
+                        </Nav>
+                    </Container>
+                </Navbar>
             </header>
             <main>
                 {props.children}

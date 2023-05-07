@@ -4,6 +4,7 @@ import type { Recipe, MealieResponse, } from "./src/mealie.d";
 import fetch, { Headers } from 'node-fetch';
 
 async function fetch_recipes() {
+    console.log('env: ' + process.env.GATSBY_MEALIE_URL);
     const mealie = new URL(process.env.GATSBY_MEALIE_URL);
     mealie.pathname = "api/recipes";
     mealie.searchParams.append("page", "1");
@@ -13,6 +14,8 @@ async function fetch_recipes() {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.MEALIE_API_KEY}`
     });
+
+    console.log(headers);
 
     const response = await fetch(mealie, { "headers": headers });
     const data: MealieResponse = await response.json();
