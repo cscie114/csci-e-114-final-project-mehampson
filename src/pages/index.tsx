@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 import RecipeCard from "../components/recipe-card";
 import Layout from "../components/layout";
 import 'bulma/css/bulma.min.css';
-import { Section, Container } from 'react-bulma-components';
+import { recipeList } from "../components/css/recipes.module.css";
 
 export const Head: HeadFC = () => <title>Meal Board</title>
 
@@ -15,11 +15,11 @@ const RecipeIndex = ({ data }: PageProps<Queries.RecipeIndexQuery>) => {
   return (
     <Layout>
       <>
-        <Container display="flex" flexWrap="wrap" alignItems="flex-start" alignContent="space-evenly" style={{ rowGap: "2rem" }}>
+        <div className={recipeList}>
           {data.allRecipe.nodes?.map((recipe) => (
             <RecipeCard recipe={recipe} />
           ))}
-        </Container>
+        </div>
       </ >
     </Layout>
   )

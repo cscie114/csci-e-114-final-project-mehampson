@@ -1,3 +1,4 @@
+/* Not sure we ended up needing all of these */
 export interface UnauthorizedResponse {
     detail: string
 }

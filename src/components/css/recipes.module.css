@@ -1,0 +1,11 @@
+.recipeList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  row-gap: 2rem;
+}
+
+.recipeCard {
+  width: 20rem;
+}
