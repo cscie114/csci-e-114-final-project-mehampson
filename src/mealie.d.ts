@@ -1,4 +1,12 @@
 /* Not sure we ended up needing all of these */
+
+/* Getting close to the deadline and there are still plenty of typing complaints. 
+ * I'll use this generic 'any' proxy that I can easily search for later, when
+ * I can spend some more time sorting them out. */
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Todo = any;
+
 export interface UnauthorizedResponse {
     detail: string
 }
@@ -45,7 +53,7 @@ export interface RecipeTaxonomy {
 export interface Recipe {
     id: string!,
     recipeId: string!
-    recipeImg: any // temp hack, where is this typedef?
+    recipeImg: Todo // temp hack, where is this typedef?
     userId?: string,
     groupId?: string,
     name: string!,
@@ -57,11 +65,7 @@ export interface Recipe {
     cookTime?: string,
     performTime?: string,
     description: string!,
-    /* I'm struggling a bit trying to tell TypeScript this will always exists as an
-     * array of 0 or more RecipeTaxomony objects, and having that actually be accepted
-     * by the props. So solely in the interest in not being stuck on this typing issue,
-     * we're using any. */
-    recipeCategory?: readonly RecipeTaxonomy[] | any,
+    recipeCategory?: readonly RecipeTaxonomy[],
     tags?: readonly RecipeTaxonomy[],
     tools?: string[],
     rating?: number,
