@@ -36,4 +36,17 @@ These are the general steps to run this:
    1. URL: the endpoint of your build hook, except with the protocol changed from 'https://' to 'form://'
    1. Recipe Events: Create, Update, Delete.
    1. Other settings: Totally up to you, though this app doesn't do anything with the rest of the data types.
+   1. (The page for this seems a bit flakey at the moment -- the URL disappears when you save. But this seems like just a rendering error. Click the Test button to be sure though.)
 5. Build your app in Netlify.
+
+## Caveats
+
+- I built this project in TypeScript rather than JavaScript because I find JS's lack of typing to be a little problematic. But I've never done this much TypeScript in one go, and found TS's handling of GraphQL's "everything is nullable" typing to be a challenge.
+
+- I'm also not entirely clear if I needed to manually write typedefs in mealie.d.ts, extend the GraphQL schemas in gatsby-node.ts, and use the automated query typegen. I feel like I'd expect Gatsby to know how to link up at least two of those things... but it seemed like I needed all three.
+
+- I get some odd warning on build that the query on some of my pages will never be run because they're not pages. But they _are_ pages, and the queries do seem to run, so not sure what to make of this.
+
+- I actually do intend to use this in Real Life and will continue working on it after grades are released. In particular, there are some places where I couldn't figure out how to make TypeScript happy, so I created a Todo type that just proxies `any` to use in those cases. It's a short-term solution that'll be easy for me to search for later.
+
+- I built search functionality, but it fails on deploy with a complaint that the static query is never run. So I patched in a dummy search result for now.

@@ -77,5 +77,4 @@ export interface Recipe {
     lastMade?: string
     recipeIngredient?: readonly RecipeIngredient[]
     recipeInstructions?: RecipeInstructions[]
-    recipePath: string
 }
