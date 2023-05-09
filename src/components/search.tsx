@@ -78,30 +78,6 @@ const SearchPage = () => {
     );
 };
 
-// Retrieve ALL parks data, grab markdown while we're at it
-// Since it is a small number, we can do the search on the client-side
-export const query = graphql`
-    query RecipeSearch {
-    allRecipe {
-        nodes {
-            id
-            name
-            slug
-            description
-            recipeCategory {
-                name
-            }
-            tags {
-                name
-            }
-            recipeIngredient {
-                note
-            }
-        }
-    }
-    }
-`;
-
 export default SearchPage;
 
 export const Head = () => <title>Search Page</title>;

@@ -87,7 +87,8 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         recipeImg: File @link(from: "fields.localFile")
         recipeIngredient: [RecipeIngredient]
         recipeInstructions: [RecipeInstructions]
-        recipeCategory: [RecipeCategory]
+        recipeCategory: [RecipeTaxonomy]
+        tags: [RecipeTaxonomy] 
       }
 
       type RecipeIngredient {
@@ -108,11 +109,13 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         ingredientReferences: [String]
     }
 
-    type RecipeCategory {
+    type RecipeTaxonomy {
         id: String!,
         name: String!,
         slug: String!
     }
+
+    
 `);
 };
 
