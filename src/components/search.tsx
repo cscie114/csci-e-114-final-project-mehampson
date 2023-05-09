@@ -37,7 +37,9 @@ const matchNode = (node: Todo, terms: Todo) => {
         || description.includes(terms)
         || (tags && tags.includes(terms))
         || (categories && categories.includes(terms))
-        || (ingredients && ingredients.includes(terms));
+        || (ingredients && ingredients.includes(terms))
+        /* short-circuit due to search failing to deploy*/
+        || true;
 };
 
 // Utility function to match nodes based on search terms
@@ -51,7 +53,7 @@ const filterNodes = (nodes: Todo[], terms: Todo) => {
 
 // Search component
 const SearchPage = () => {
-    const { allRecipe } = useStaticQuery(graphql`
+    /*const { allRecipe } = useStaticQuery(graphql`
         query RecipeIndex {
             allRecipe {
                 nodes {
@@ -72,43 +74,22 @@ const SearchPage = () => {
             }
         }
         `);
-
-    const fake_response = [
-        {
-            "id": "1341ca36-4d2b-5c30-a692-3190c18c510c",
-            "name": "Static Queries Are Busted",
-            "slug": "search-problems",
-            "description": "",
-            "recipeCategory": ['Breakfast'],
-            "tags": [
-                {
-                    "name": "mealie_alpha"
-                }
-            ],
-            "recipeIngredient": [
-                {
-                    "note": "2 teaspoons cumin"
-                },
-            ]
-        },
-        {
-            "id": "1341ca36-4d2b-5c30-a692-3190c18c510c",
-            "name": "Static Queries Are Busted",
-            "slug": "search-problems",
-            "description": "",
-            "recipeCategory": ['Breakfast'],
-            "tags": [
-                {
-                    "name": "mealie_alpha"
-                }
-            ],
-            "recipeIngredient": [
-                {
-                    "note": "2 teaspoons cumin"
-                },
-            ]
-        },
-    ];
+    */
+    const allRecipe = {
+        'nodes': [
+            {
+                "id": "1341ca36-4d2b-5c30-a692-3190c18c510c",
+                "name": "My Static Queries Are Busted",
+                "slug": "search-problems",
+                "description": "",
+                "recipeCategory": [],
+                "tags": [
+                ],
+                "recipeIngredient": [
+                ]
+            },
+        ]
+    };
 
     const [terms, setTerms] = useState(null);
     const handleSearch = (e: Todo) => setTerms(e.target.value);
@@ -129,7 +110,7 @@ const SearchPage = () => {
                 {matches.map((recipe) =>
                 (
                     <ListGroup.Item action key={recipe.id}>
-                        <Link to={`/recipe/${recipe.slug}`}>{recipe.name}</Link>
+                        <Link to={`${recipe.slug}`}>{recipe.name}</Link>
                     </ListGroup.Item>)
                 )}
             </ListGroup>
