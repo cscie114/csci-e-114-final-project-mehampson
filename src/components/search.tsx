@@ -41,7 +41,7 @@ const matchNode = (node: Todo, terms: Todo) => {
 };
 
 // Utility function to match nodes based on search terms
-const filterNodes = (nodes: [Recipe], terms: Todo) => {
+const filterNodes = (nodes: Todo[], terms: Todo) => {
     if (!terms || terms.length === 0) {
         return [];
     }
@@ -55,24 +55,61 @@ const SearchPage = () => {
         query RecipeIndex {
             allRecipe {
                 nodes {
-                id
-                name
-                slug
-                description
-                recipeCategory {
+                    id
                     name
-                }
-                tags {
-                    name
-                }
-                recipeIngredient {
-                    note
-                }
+                    slug
+                    description
+                    recipeCategory {
+                        name
+                    }
+                    tags {
+                        name
+                    }
+                    recipeIngredient {
+                        note
+                    }
                 }
             }
         }
         `);
-    //const allRecipe = { 'nodes': [] };
+
+    const fake_response = [
+        {
+            "id": "1341ca36-4d2b-5c30-a692-3190c18c510c",
+            "name": "Static Queries Are Busted",
+            "slug": "search-problems",
+            "description": "",
+            "recipeCategory": ['Breakfast'],
+            "tags": [
+                {
+                    "name": "mealie_alpha"
+                }
+            ],
+            "recipeIngredient": [
+                {
+                    "note": "2 teaspoons cumin"
+                },
+            ]
+        },
+        {
+            "id": "1341ca36-4d2b-5c30-a692-3190c18c510c",
+            "name": "Static Queries Are Busted",
+            "slug": "search-problems",
+            "description": "",
+            "recipeCategory": ['Breakfast'],
+            "tags": [
+                {
+                    "name": "mealie_alpha"
+                }
+            ],
+            "recipeIngredient": [
+                {
+                    "note": "2 teaspoons cumin"
+                },
+            ]
+        },
+    ];
+
     const [terms, setTerms] = useState(null);
     const handleSearch = (e: Todo) => setTerms(e.target.value);
     const recipes = allRecipe.nodes;

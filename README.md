@@ -1,28 +1,29 @@
-Your project should include:
+As my final project for CSCI E-114, I've built a public front-end for the recipe manager application Mealie.
 
-- Pages built through a Static Site Generator.
-- Data that drives content for the site generation; this can be through local data or
-  through a web-based API.
-  \*Use of GitHub (for us, so we have easy access to code; for you, so can iteratively
-  make commits as your project develops!).
-- A CI/CD process that deploys your site to a hosting provider
-- An "Extraordinary Distinction" -- dive into one of the following areas and do more
-  than you have previously done for your assignments. For example, you could:
-- Include a README.md that contains detailed instructions on running your project locally.
-  If you have an .env file, you can submit it separately through Canvas -- your .env and
-  any secrets it contains should not be part of your Git repository! Note: Your README.md
-  file should also contain (up front) the URL to wherever your final project is hosted
-  on the web.
+## Why?
 
-This app pulls recipes from Mealie and generates a tablet-friendly view for my kitchen.
+I run Mealie on my home network to keep track of recipes I come across. I've found it handy enough that I keep a small Kindle Fire tablet in the kitchen to view recipes as I'm cooking. It's quite convenient, but as Mealie approaches its 1.0 release, I'm going to lose a very useful feature: a public view.
 
-I use Mealie as a recipe organizer and keep a small Kindle Fire tablet in the kitchen to view recipes as I'm cooking. It's quite convenient, but as Mealie approaches its 1.0 release, I'm going to lose a very useful feature: a public view. My tablet doesn't support my password manager's biometric login, so logging in is a hassle when I don't intend to do anything but read a recipe -- and conveniently, Mealie doesn't currently require that.
+Currently Mealie doesn't require a visitor to
+authenticate to actually view recipes, which is nice because my tablet doesn't support my password manager's biometric login. It's going to be a real hassle having to type "AG4EUkz4pX%$NBCiMmC7MznJL" or whatever my password is while I'm trying to make dinner. I've actually been holding off on upgrading to the beta specifically because of this.
 
-Prerequisites:
+Mealie does have a REST API, so rather than upgrade to a tablet with a fingerprint reader what I'm going instead to do is treat Mealie as if it were a headless CMS and pull its content into Gatsby. It has some functionality for external notifications, which we can use to trigger a build hook on Netlify whenever a recipe is updated.
 
-- You must have an instance of Mealie 1.0 beta 5 running (or later, if you read this in the future). You must be an admin, and it must be reachable by Netlify or wherever you build this app.
+And lastly, since we know the specific device I plan to actually use this on, we're going to make sure it's easy to use on an 800x1280 touchscreen interface.
 
-Steps
+## Mealie
+
+To use this app, you must have an instance of Mealie 1.0 beta 5 running (or later, if you read this in the future). You must be an admin, and it must be reachable by Netlify or wherever you build this app.
+
+I've set up a test instance of the latest Mealie beta and imported some recipes into it for use in this project. The .env file includes the URL and the username + password of the test user. Please log into Mealie and make updates! CRUD operations will trigger a build hook that causes Meal Board to rebuild on Netlify.
+
+(And don't worry about leaving the Mealie recipes in any particular state. This is only a test instance, and nothing you do in it will impact my actual day-to-day instance, which is a different site.)
+
+If you prefer to recreate the entire setup from scratch, you can get Mealie up and running with Docker pretty easily. The documentation for the beta is [here](https://nightly.mealie.io/).
+
+## Steps
+
+These are the general steps to run this:
 
 1. Set up a Github repo for this app and connect it to a new Netlify site. Other CI/CD pipelines could work as long as they support build hooks.
 2. Set your environment variables:
