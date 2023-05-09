@@ -88,7 +88,8 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         recipeIngredient: [RecipeIngredient]
         recipeInstructions: [RecipeInstructions]
         recipeCategory: [RecipeTaxonomy]
-        tags: [RecipeTaxonomy] 
+        tags: [RecipeTaxonomy]
+        recipePath: String!
       }
 
       type RecipeIngredient {

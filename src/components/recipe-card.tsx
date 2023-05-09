@@ -19,7 +19,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         const image = getImage(recipe.recipeImg);
         return (
             <Card border="secondary" bg="light" className={recipeCard}>
-                <Link to={`recipes/${recipe.slug}`}>
+                <Link to={`recipe/${recipe.slug}`}>
                     <Card.Header>
                         <Card.Title>{recipe.name}</Card.Title>
                     </Card.Header>

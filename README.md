@@ -1,4 +1,6 @@
-As my final project for CSCI E-114, I've built a public front-end for the recipe manager application Mealie.
+As my final project for CSCI E-114, I've built a public front-end for the recipe manager application [Mealie](https://hay-kot.github.io/mealie/).
+
+The project can be viewed on [Netlify](https://bright-raindrop-55fff2.netlify.app/).
 
 ## Why?
 
