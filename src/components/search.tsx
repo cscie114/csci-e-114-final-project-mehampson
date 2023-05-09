@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
-import { graphql, Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { Recipe, Todo } from "../mealie";
-import { getSearchIndex } from "../hooks/getSearchIndex";
+
 
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -51,9 +51,31 @@ const filterNodes = (nodes: [Recipe], terms: Todo) => {
 
 // Search component
 const SearchPage = () => {
+    const { allRecipe } = useStaticQuery(graphql`
+        query RecipeIndex {
+            allRecipe {
+                nodes {
+                id
+                name
+                slug
+                description
+                recipeCategory {
+                    name
+                }
+                tags {
+                    name
+                }
+                recipeIngredient {
+                    note
+                }
+                }
+            }
+        }
+        `);
+    //const allRecipe = { 'nodes': [] };
     const [terms, setTerms] = useState(null);
     const handleSearch = (e: Todo) => setTerms(e.target.value);
-    const recipes = getSearchIndex();
+    const recipes = allRecipe.nodes;
     const matches = filterNodes(recipes, terms);
 
     return (
