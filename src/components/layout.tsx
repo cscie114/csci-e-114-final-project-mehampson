@@ -15,15 +15,15 @@ interface Props {
 
 const Layout: React.FunctionComponent<Props> = (props: Props) => {
     return (
-        <div className="">
-            <header className="">
-                <Navbar bg="light">
+        <div>
+            <header >
+                <Navbar>
                     <Container>
                         <Nav>
                             <Navbar.Brand>Meal Board</Navbar.Brand>
                             <Nav.Link href="/">Recipes</Nav.Link>
-                            <SearchPage />
                         </Nav>
+                        <SearchPage />
                     </Container>
                 </Navbar>
             </header>

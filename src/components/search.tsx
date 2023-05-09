@@ -5,9 +5,7 @@ import { Recipe, Todo } from "../mealie";
 import { getSearchIndex } from "../hooks/getSearchIndex";
 
 import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { ListGroupItem } from "react-bootstrap";
 
 
 /* Using a bunch of 'any' types here, since it's Monday and I don't quite get how
@@ -60,14 +58,13 @@ const SearchPage = () => {
 
     return (
         <Form className="form-inline my-2 my-lg-0">
-            <FloatingLabel
-                controlId="recipe-search"
-                label="Search">
-                <Form.Control id="recipe-search" type="text" onChange={handleSearch} />
-            </FloatingLabel>
+
+            <Form.Control id="recipe-search" type="text" onChange={handleSearch} placeholder="Search" />
+
             <div>
                 {
-                    terms && <p>{matches.length} recipes found</p>}
+                    terms && <p>{matches.length} recipes found</p>
+                }
             </div>
             <ListGroup>
                 {matches.map((recipe) =>
