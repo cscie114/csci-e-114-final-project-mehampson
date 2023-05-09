@@ -22,6 +22,7 @@ const Layout: React.FunctionComponent<Props> = (props: Props) => {
                         <Nav>
                             <Navbar.Brand>Meal Board</Navbar.Brand>
                             <Nav.Link href="/">Recipes</Nav.Link>
+                            <Nav.Link href={`${process.env.GATSBY_MEALIE_URL}`}>Mealie</Nav.Link>
                         </Nav>
                         <SearchPage />
                     </Container>

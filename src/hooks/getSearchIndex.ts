@@ -23,5 +23,4 @@ export const getSearchIndex = () => {
         }
     `);
     return allRecipe.nodes;
-
 };

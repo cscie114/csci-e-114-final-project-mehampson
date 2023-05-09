@@ -76,7 +76,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = async ({
     });
 };
 
-export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({ actions }) => {
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = async ({ actions }) => {
     actions.createTypes(`
       type Recipe implements Node {
         recipeId: String!

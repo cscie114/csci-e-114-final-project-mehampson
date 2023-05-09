@@ -38,7 +38,7 @@ const matchNode = (node: Todo, terms: Todo) => {
         || (tags && tags.includes(terms))
         || (categories && categories.includes(terms))
         || (ingredients && ingredients.includes(terms));
-}
+};
 
 // Utility function to match nodes based on search terms
 const filterNodes = (nodes: [Recipe], terms: Todo) => {
@@ -47,7 +47,7 @@ const filterNodes = (nodes: [Recipe], terms: Todo) => {
     }
     terms = terms.toLowerCase();
     return nodes.map(normalizeNode).filter((node) => matchNode(node, terms));
-}
+};
 
 // Search component
 const SearchPage = () => {
